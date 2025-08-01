@@ -151,6 +151,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 description: "Charts, metrics, and dashboard widgets",
                 available: true,
                 gradient: "from-blue-500 to-indigo-500"
+              },
+              {
+                icon: <Sparkles className="w-6 h-6" />,
+                title: "React Bits Collection",
+                description: "Complete library of animated React components",
+                available: true,
+                gradient: "from-purple-500 to-pink-500"
               }
             ].map((tool, index) => (
               <div 
@@ -175,6 +182,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                       onNavigate('dashboard-components');
                     } else if (tool.title === 'Text Animations') {
                       onNavigate('text-animations');
+                    } else if (tool.title === 'React Bits Collection') {
+                      onNavigate('react-bits-showcase');
                     }
                   }
                 }}
