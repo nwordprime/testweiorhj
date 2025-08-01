@@ -29,37 +29,33 @@ interface ReactBitsShowcaseProps {
 }
 
 export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
-  const [selectedComponent, setSelectedComponent] = useState<any>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const components = [
+  const showcaseComponents = [
     // Text Animations
     {
       id: 'glitch-text',
       name: 'Glitch Text',
-      description: 'Cyberpunk-style glitch effect with customizable colors',
+      description: 'Cyberpunk-style glitch effect with customizable colors and intensity',
       category: 'text-animations',
       component: GlitchText,
       props: {
         text: 'GLITCH EFFECT',
-        fontSize: '2rem',
+        fontSize: '2.5rem',
         fontWeight: '900',
         color: '#ffffff',
         glitchColor1: '#ff0080',
         glitchColor2: '#00ff80',
-        animationSpeed: 2
+        intensity: 0.8
       },
       code: `import { GlitchText } from '@/lib/components/react-bits';
 
 <GlitchText 
   text="GLITCH EFFECT"
-  fontSize="2rem"
+  fontSize="2.5rem"
   fontWeight="900"
   color="#ffffff"
   glitchColor1="#ff0080"
   glitchColor2="#00ff80"
-  animationSpeed={2}
+  intensity={0.8}
 />`
     },
     {
@@ -74,7 +70,7 @@ export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
         fontWeight: '900',
         color: '#ffffff',
         shineColor: '#ffd700',
-        animationSpeed: 3
+        duration: 2000
       },
       code: `import { ShinyText } from '@/lib/components/react-bits';
 
@@ -84,13 +80,13 @@ export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
   fontWeight="900"
   color="#ffffff"
   shineColor="#ffd700"
-  animationSpeed={3}
+  duration={2000}
 />`
     },
     {
       id: 'rotating-text',
       name: 'Rotating Text',
-      description: 'Smooth word rotation with fade transitions',
+      description: 'Smooth word rotation with customizable timing',
       category: 'text-animations',
       component: RotatingText,
       props: {
@@ -239,11 +235,11 @@ export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
     {
       id: 'spotlight-card',
       name: 'Spotlight Card',
-      description: 'Interactive card with spotlight effect that follows cursor',
+      description: 'Interactive card with mouse-following spotlight effect',
       category: 'components',
       component: SpotlightCard,
       props: {
-        className: 'w-64 h-40 bg-gray-800 border border-gray-700 rounded-lg p-6',
+        className: 'w-64 h-40 bg-gray-900 border border-gray-700 rounded-lg p-6',
         spotlightColor: 'rgba(255, 255, 255, 0.1)',
         children: (
           <div>
@@ -255,7 +251,7 @@ export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
       code: `import { SpotlightCard } from '@/lib/components/react-bits';
 
 <SpotlightCard 
-  className="w-64 h-40 bg-gray-800 border border-gray-700 rounded-lg p-6"
+  className="w-64 h-40 bg-gray-900 border border-gray-700 rounded-lg p-6"
   spotlightColor="rgba(255, 255, 255, 0.1)"
 >
   <h3 className="text-white font-bold mb-2">Spotlight Card</h3>
@@ -265,31 +261,28 @@ export function ReactBitsShowcase({ onNavigate }: ReactBitsShowcaseProps) {
     {
       id: 'magic-bento',
       name: 'Magic Bento',
-      description: 'Animated bento grid with hover effects and smooth transitions',
+      description: 'Bento grid with magical hover effects and smooth animations',
       category: 'components',
       component: MagicBento,
       props: {
         items: [
-          { id: '1', title: 'Item 1', content: 'Content 1', color: '#ff6b6b' },
-          { id: '2', title: 'Item 2', content: 'Content 2', color: '#4ecdc4' },
-          { id: '3', title: 'Item 3', content: 'Content 3', color: '#45b7d1' },
-          { id: '4', title: 'Item 4', content: 'Content 4', color: '#96ceb4' }
+          { id: '1', title: 'Card 1', content: 'First card content', className: 'col-span-2' },
+          { id: '2', title: 'Card 2', content: 'Second card content' },
+          { id: '3', title: 'Card 3', content: 'Third card content' },
+          { id: '4', title: 'Card 4', content: 'Fourth card content', className: 'col-span-2' }
         ],
-        columns: 2,
-        gap: 16,
-        borderRadius: 12,
+        className: 'w-full max-w-2xl',
         globalSpotlight: true
       },
       code: `import { MagicBento } from '@/lib/components/react-bits';
 
 <MagicBento 
   items={[
-    { id: '1', title: 'Item 1', content: 'Content 1', color: '#ff6b6b' },
-    { id: '2', title: 'Item 2', content: 'Content 2', color: '#4ecdc4' }
+    { id: '1', title: 'Card 1', content: 'First card content', className: 'col-span-2' },
+    { id: '2', title: 'Card 2', content: 'Second card content' },
+    { id: '3', title: 'Card 3', content: 'Third card content' }
   ]}
-  columns={2}
-  gap={16}
-  borderRadius={12}
+  className="w-full max-w-2xl"
   globalSpotlight={true}
 />`
     },
@@ -402,15 +395,14 @@ import { Home, Settings, User, Mail, Heart } from 'lucide-react';
     {
       id: 'blob-cursor',
       name: 'Blob Cursor',
-      description: 'Animated blob that follows the cursor with smooth trailing',
+      description: 'Smooth blob that follows your cursor with customizable colors',
       category: 'animations',
       component: BlobCursor,
       props: {
         size: 40,
         color: '#3b82f6',
         opacity: 0.6,
-        blur: 20,
-        trail: true
+        blur: 20
       },
       code: `import { BlobCursor } from '@/lib/components/react-bits';
 
@@ -419,7 +411,6 @@ import { Home, Settings, User, Mail, Heart } from 'lucide-react';
   color="#3b82f6"
   opacity={0.6}
   blur={20}
-  trail={true}
 />`
     },
     {
@@ -488,7 +479,7 @@ import { Home, Settings, User, Mail, Heart } from 'lucide-react';
     {
       id: 'dot-grid',
       name: 'Dot Grid',
-      description: 'Animated dot grid background with customizable spacing',
+      description: 'Animated dot grid background with customizable spacing and colors',
       category: 'backgrounds',
       component: DotGrid,
       props: {
@@ -556,124 +547,115 @@ import { Home, Settings, User, Mail, Heart } from 'lucide-react';
     }
   ];
 
+  const [selectedComponent, setSelectedComponent] = useState<any>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+
   const categories = [
-    { id: 'all', name: 'All Components' },
-    { id: 'text-animations', name: 'Text Animations' },
-    { id: 'components', name: 'Components' },
-    { id: 'animations', name: 'Animations' },
-    { id: 'backgrounds', name: 'Backgrounds' }
+    { id: 'all', name: 'All Components', count: showcaseComponents.length },
+    { id: 'text-animations', name: 'Text Animations', count: showcaseComponents.filter(c => c.category === 'text-animations').length },
+    { id: 'components', name: 'Components', count: showcaseComponents.filter(c => c.category === 'components').length },
+    { id: 'animations', name: 'Animations', count: showcaseComponents.filter(c => c.category === 'animations').length },
+    { id: 'backgrounds', name: 'Backgrounds', count: showcaseComponents.filter(c => c.category === 'backgrounds').length }
   ];
 
-  const filteredComponents = components.filter(comp => {
-    const matchesSearch = comp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         comp.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || comp.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredComponents = activeCategory === 'all' 
+    ? showcaseComponents 
+    : showcaseComponents.filter(c => c.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold mb-2">React Bits Showcase</h1>
-            <p className="text-gray-400">Beautiful, reusable React components and animations</p>
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <div className="border-b border-gray-800 bg-black/50 backdrop-blur-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => onNavigate('home')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                ← Back
+              </button>
+              <div>
+                <h1 className="text-2xl font-bold">React Bits</h1>
+                <p className="text-gray-400 text-sm">Copy-paste React components</p>
+              </div>
+            </div>
+            <div className="text-sm text-gray-400">
+              {filteredComponents.length} components
+            </div>
           </div>
-          <button
-            onClick={() => onNavigate('home')}
-            className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
-          >
-            ← Back to Home
-          </button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">
+            Beautiful React Components
+          </h2>
+          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            A collection of modern, animated React components that you can copy and paste into your projects.
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-300">
+            <div>
+              <h3 className="font-medium text-white mb-2">🎨 Text Animations ({showcaseComponents.filter(c => c.category === 'text-animations').length})</h3>
+              <p>Advanced text effects including glitch, shine, rotation, scrambling, gradients, and interactive focus effects.</p>
+            </div>
+            <div>
+              <h3 className="font-medium text-white mb-2">🧩 Interactive Components ({showcaseComponents.filter(c => c.category === 'components').length})</h3>
+              <p>Cards, grids, counters, docks, folders, lists and UI elements with mouse interactions and smooth animations.</p>
+            </div>
+            <div>
+              <h3 className="font-medium text-white mb-2">🌟 Animations & Backgrounds ({showcaseComponents.filter(c => c.category === 'animations').length + showcaseComponents.filter(c => c.category === 'backgrounds').length})</h3>
+              <p>Cursor effects, borders, noise overlays, metaballs, particles, waves and background patterns to enhance your designs.</p>
+            </div>
+          </div>
         </div>
 
-        {/* Search and Filter */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <div className="flex-1">
-            <input
-              type="text"
-              placeholder="Search components..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
-            />
-          </div>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
-          >
-            {categories.map(category => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+        {/* Category Filter */}
+        <div className="flex flex-wrap gap-2 mb-8 justify-center">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                activeCategory === category.id
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              {category.name} ({category.count})
+            </button>
+          ))}
         </div>
 
         {/* Components Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {filteredComponents.map((comp) => {
-            const Component = comp.component;
-            return (
-              <div key={comp.id} className="bg-gray-800 rounded-xl overflow-hidden">
-                {/* Preview */}
-                <div className="bg-gray-900 rounded-xl p-6 mb-4 min-h-[200px] flex items-center justify-center overflow-hidden">
-                  {comp.id === 'noise' ? (
-                    <div className="relative w-full h-full bg-gray-800 rounded-lg overflow-hidden">
-                      <Component {...comp.props} />
-                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                        Noise Overlay Effect
-                      </div>
-                    </div>
-                  ) : comp.id === 'metaballs' ? (
-                    <div className="w-full h-full bg-black rounded-lg overflow-hidden">
-                      <Component {...comp.props} />
-                    </div>
-                  ) : comp.id === 'waves' ? (
-                    <div className="w-full h-full bg-gray-900 rounded-lg overflow-hidden">
-                      <Component {...comp.props} />
-                    </div>
-                  ) : comp.id === 'particles' ? (
-                    <div className="w-full h-full bg-gray-900 rounded-lg overflow-hidden">
-                      <Component {...comp.props} />
-                    </div>
-                  ) : comp.id === 'animated-list' ? (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Component {...comp.props} />
-                    </div>
-                  ) : (
-                    <Component {...comp.props} />
-                  )}
-                </div>
-
-                {/* Info */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold">{comp.name}</h3>
-                    <span className="px-2 py-1 bg-blue-600 text-xs rounded-full">
-                      {categories.find(c => c.id === comp.category)?.name}
-                    </span>
-                  </div>
-                  <p className="text-gray-400 mb-4">{comp.description}</p>
-                  <button
-                    onClick={() => setSelectedComponent(comp)}
-                    className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-                  >
-                    View Code
-                  </button>
-                </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredComponents.map((item) => (
+            <div
+              key={item.id}
+              className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors"
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold mb-2">{item.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{item.description}</p>
               </div>
-            );
-          })}
+              
+              {/* Component Preview */}
+              <div className="bg-black rounded-lg p-4 mb-4 min-h-[120px] flex items-center justify-center relative overflow-hidden">
+                <item.component {...item.props} />
+              </div>
+              
+              <button
+                onClick={() => setSelectedComponent(item)}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors text-sm font-medium"
+              >
+                View Code
+              </button>
+            </div>
+          ))}
         </div>
-
-        {filteredComponents.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No components found matching your search.</p>
-          </div>
-        )}
       </div>
 
       {/* Code Modal */}
